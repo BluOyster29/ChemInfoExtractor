@@ -263,10 +263,14 @@ def experiment_summariser(experiment):
 
             process = summarise(ex)
             
+            if not mainargs.output_path:
+                continue
             path = mainargs.output_path + str(idx) + '.json'
+            
             output_json(process, path)  
             processes[idx]=process
 
+    
         return processes
 
     elif mainargs.text:
@@ -274,6 +278,9 @@ def experiment_summariser(experiment):
         
         '''
         process = summarise(mainargs.text)
+        if not mainargs.output_path:
+            print(process)
+            return process
         output_json(process, mainargs.output_path)   
         return process
 
